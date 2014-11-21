@@ -12,3 +12,32 @@
 // --------------------------------------------------
 
 @import "vendor/normalize";
+
+
+//
+// Patterns: Groups of Styles
+// --------------------------------------------------
+
+@import "patterns/global";
+@import "patterns/forms";
+@import "patterns/buttons";
+@import "patterns/labels";
+@import "patterns/tables";
+@import "patterns/navlist";
+
+
+//
+// Layouts: Groups of Components
+// --------------------------------------------------
+
+// @import "layouts/default";
+// @import "layouts/setup";
+@import "layouts/auth";
+// @import "layouts/content";
+// @import "layouts/editor";
+// @import "layouts/settings";
+// @import "layouts/users";
+// @import "layouts/user";
+// @import "layouts/about";
+// @import "layouts/tags";
+// @import "layouts/error";

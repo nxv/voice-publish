@@ -3,6 +3,14 @@ define ['jquery', 'ckeditor-jquery', 'angular-route', 'angularAMD', 'app/parse']
 
   app = angular.module('webapp', ['ngRoute'])
 
+  app.factory 'Page', ->
+    bodyClass = 'home'
+    setBodyClass = (postfix) ->
+      bodyClass = "app-#{postfix}"
+    setBodyClass bodyClass
+    { bodyClass: -> bodyClass
+    , setBodyClass }
+
   app.config ($routeProvider) ->
     $routeProvider
       .when '/', angularAMD.route do
@@ -13,9 +21,9 @@ define ['jquery', 'ckeditor-jquery', 'angular-route', 'angularAMD', 'app/parse']
         templateUrl   : 'pages/dashboard.html'
         controller    : 'dashboardController'
         controllerUrl : 'js/controller/dashboard.js'
-      .when '/login', angularAMD.route do
-        templateUrl   : 'pages/login.html'
-        controller    : 'loginController'
-        controllerUrl : 'js/controller/login.js'
+      .when '/signin', angularAMD.route do
+        templateUrl   : 'pages/signin.html'
+        controller    : 'signinController'
+        controllerUrl : 'js/controller/signin.js'
 
   return angularAMD.bootstrap(app)
