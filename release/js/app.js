@@ -1,33 +1,40 @@
+/* Start JS Injection */
+this.App = {
+  "name": "voice-publish",
+  "title": "VOICE Publish System",
+  "parse": {
+    "appId": "IST5ENg8qZjjYQ5k1OuDifF51kyWUY8BJAwuODs4",
+    "jsKey": "auk2w2yBpOzt0T6ASwu8cNxz8YoHkuBvrYpLj26r"
+  }
+};
+/* End JS Injection */
 (function(){
-  this.App = {
-    name: 'voice-publish',
-    title: 'VOICE Publish System',
-    parse: {
-      appId: 'IST5ENg8qZjjYQ5k1OuDifF51kyWUY8BJAwuODs4',
-      jsKey: 'auk2w2yBpOzt0T6ASwu8cNxz8YoHkuBvrYpLj26r'
-    }
-  };
   require.config({
     baseUrl: 'lib',
     paths: {
       'js': '../js',
       'app': '../js/app',
-      'jquery': 'jquery/jquery',
-      'ckeditor-core': 'ckeditor/ckeditor',
-      'ckeditor-jquery': 'ckeditor/adapters/jquery',
-      'angular': 'angular/angular',
-      'angularAMD': 'angularAMD/angularAMD',
-      'angular-mocks': 'angular-mocks/angular-mocks',
-      'angular-route': 'angular-route/angular-route',
-      'bootstrap': 'bootstrap/bootstrap',
-      'parse': 'parse/parse.min'
+      'ckeditor-jquery': 'ckeditor/adapters/jquery'
+      /* Start JS Injection */
+, 'angular': 'angular/angular'
+, 'angular-mocks': 'angular-mocks/angular-mocks'
+, 'angular-route': 'angular-route/angular-route'
+, 'angularAMD': 'angularAMD/angularAMD'
+, 'bootstrap': 'bootstrap/bootstrap'
+, 'ckeditor': 'ckeditor/ckeditor'
+, 'fontawesome': 'fontawesome/fontawesome'
+, 'jquery': 'jquery/jquery'
+, 'parse': 'parse/parse'
+, 'underscore': 'underscore/underscore'
+/* End JS Injection */
     },
     shim: {
       'ckeditor-jquery': {
-        deps: ['jquery', 'ckeditor-core']
+        deps: ['jquery', 'ckeditor']
       },
       'angular-route': ['angular'],
-      'angularAMD': ['angular']
+      'angularAMD': ['angular'],
+      'parse': ['underscore']
     },
     deps: ['app/main']
   });
