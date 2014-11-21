@@ -1,0 +1,14 @@
+doctype html
+html(lang='en')
+  head
+    title= app.title
+    case env
+      when 'development'
+        link(rel='stylesheet', href='css/style.css')
+      when 'production'
+        link(rel='stylesheet', href='css/style.min.css')
+    script(data-main='js/app', src='lib/requirejs/require.js', async)
+    link(rel='stylesheet', href='lib/fontawesome/font-awesome.css')
+  body
+    h1= app.title
+    div(ng-view)
