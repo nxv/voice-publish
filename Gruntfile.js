@@ -43,13 +43,21 @@ configureGrunt = function (grunt) {
   }
 
   var generatePathsInjection = function() {
-    var exceptions = ['requirejs'],
-        libs = fs.readdirSync(buildDirectory + '/lib'),
-        lines = libs.filter(function(lib) {
-          return !grunt.file.isMatch(exceptions, lib);
-        }).map(function(lib) {
-          return ', \'' + lib + '\': \'' + lib + '/' + lib + '\'';
-        });
+    console.log(bowerModules);
+    var exceptions = ['requirejs/**', 'fontawesome/**'];
+    var lines = [];
+    _.forEach(bowerModules, function(module, pkg) {
+      var target = _.find(module, function(srcpath) {
+        return ! grunt.file.isMatch(exceptions, srcpath) && 
+                 grunt.file.isMatch('**/' + pkg + '.js', srcpath);
+      });
+      console.log(target);
+      if (target) {
+        target = path.join(path.dirname(target), path.basename(target, '.js'));
+        target = target.split(path.sep).join('/');
+        lines.push(', \'' + pkg + '\': \'' + target + '\'');
+      }
+    });
     return generateInjection(lines.join('\n'));
   };
 
@@ -119,11 +127,6 @@ configureGrunt = function (grunt) {
     },
 
     copy: {
-      build: {
-        files: [
-          {expand: true, src: ['lib/**'], dest: '<%= paths.build %>'}
-        ]
-      },
       release: {
         files: [
           {expand: true, cwd: '<%= paths.build %>', src: ['**'], dest: '<%= paths.release %>'}
@@ -138,12 +141,23 @@ configureGrunt = function (grunt) {
           targetDir: '<%= paths.build %>/lib',
           // Maintain the original package structure since static resource reference may fail with managed layout
           layout: function(type, pkg, source) {
-            bowerModules[pkg] == null && (bowerModules[pkg] = []);
             var srcpath = path.resolve(cwd, source),
                 destpath = path.relative(bowerDirectory, srcpath);
-            bowerModules[pkg].push(destpath);
-            return path.dirname(destpath);
+            if (fs.lstatSync(srcpath).isFile()) {
+              bowerModules[pkg] == null && (bowerModules[pkg] = []);
+              bowerModules[pkg].push(destpath);
+              destpath = path.dirname(destpath);
+            }
+            return destpath;
           }
+        }
+      }
+    },
+
+    update_submodules: {
+      default: {
+        options: {
+          params: '--init'
         }
       }
     }
@@ -163,9 +177,27 @@ configureGrunt = function (grunt) {
 
   grunt.initConfig(cfg);
 
-  grunt.registerTask('build', ['clean:build', 'bower', 'copy:build', 'livescript', 'jade:build', 'sass:build']);
-  grunt.registerTask('release', ['clean', 'build', 'copy:release']);
-  grunt.registerTask('default', ['build']);
+  // ### Init assets
+  // `grunt init` - will run an initial asset build for you
+  //
+  // This task is very important, and should always be run and when fetching down an updated code base just after
+  // running `npm install`.
+  grunt.registerTask('init', 'Prepare the project for development',
+      ['update_submodules', 'default']);
+
+  // ### Default asset build
+  // `grunt` - default grunt task
+  //
+  // Compiles concatenates javascript files for the admin UI into a handful of files instead
+  // of many files, and makes sure the bower dependencies are in the right place.
+  grunt.registerTask('default', 'Build JS & templates for development',
+      ['bower', 'livescript', 'jade:build', 'sass:build']);
+
+  // ### Release assets
+  // `grunt release` - will build the minified assets used in deployment.
+  //
+  // Compress and optimize JavaScript, HTML, and CSS flies
+  grunt.registerTask('release', ['clean', 'default', 'copy:release']);
 };
 
 module.exports = configureGrunt;

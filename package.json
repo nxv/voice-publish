@@ -17,6 +17,7 @@
     "grunt-contrib-jade": "^0.13.0",
     "grunt-livescript": "git://github.com/nxv/grunt-livescript.git",
     "grunt-sass": "^0.16.1",
+    "grunt-update-submodules": "^0.4.1",
     "lodash": "^2.4.1",
     "matchdep": "^0.3.0"
   }

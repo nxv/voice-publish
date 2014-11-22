@@ -6,6 +6,7 @@ require.config do
   paths:
     'js': '../js'
     'app': '../js/app'
+    'ckeditor':'ckeditor/ckeditor'
     'ckeditor-jquery':'ckeditor/adapters/jquery'
     # Auto generated paths
     /* <%= PathDef %> */
