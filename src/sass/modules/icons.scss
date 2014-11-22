@@ -1,0 +1,656 @@
+// ------------------------------------------------------------
+// Icons
+//
+// Defined the @font-face rule for the icon font, as well as
+// the base styles for when using icons.
+// Includes the mixins for adding icons directly and the
+// variables for each icon.
+//
+// * Base styled for icons
+// * Base styled for icons
+// * The Icon (before) Mixin
+// * The Icon (after) Mixin
+// * Icon Variables
+// * Icon Class Styles
+// ------------------------------------------------------------
+
+
+//
+// Base styled for icons
+// --------------------------------------------------
+
+%icon-base {
+    font-family: "FontAwesome";
+    font-weight: normal;
+    font-style: normal;
+    vertical-align: -7%;
+    text-transform:none;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+//
+// The Icon (before) Mixin
+// --------------------------------------------------
+
+@mixin icon($char, $size: '', $color: '') {
+    &:before {
+        @extend %icon-base;
+
+        content: '#{$char}';
+        @if $size != '' {
+            font-size: $size;
+        }
+        @if $color != '' {
+            color: $color;
+        }
+        @content;
+    }
+
+    &:hover {
+        text-decoration:none;
+    }
+}
+
+//
+// The Icon (after) Mixin
+// --------------------------------------------------
+
+@mixin icon-after($char, $size: '', $color: '') {
+    &:after {
+        @extend %icon-base;
+
+        content: '#{$char}';
+        @if $size != '' {
+            font-size: $size;
+        }
+        @if $color != '' {
+            color: $color;
+        }
+        @content;
+    }
+
+    &:hover {
+        text-decoration:none;
+    }
+}
+
+
+//
+// Icon Variables
+// --------------------------------------------------
+// For accessibility, icon characters in the icon font are stored in Unicode's
+// Private Use Area characters. This means that screen readers won't attempt to
+// read them out loud.
+//
+
+// Placeholder
+$i:                 \e018;
+
+$fa-adjust: \e042;
+$fa-adn: \e170;
+$fa-align-center: \e037;
+$fa-align-justify: \e039;
+$fa-align-left: \e036;
+$fa-align-right: \e038;
+$fa-ambulance: \e0f9;
+$fa-anchor: \e13d;
+$fa-android: \e17b;
+$fa-angellist: \e209;
+$fa-angle-double-down: \e103;
+$fa-angle-double-left: \e100;
+$fa-angle-double-right: \e101;
+$fa-angle-double-up: \e102;
+$fa-angle-down: \e107;
+$fa-angle-left: \e104;
+$fa-angle-right: \e105;
+$fa-angle-up: \e106;
+$fa-apple: \e179;
+$fa-archive: \e187;
+$fa-area-chart: \e1fe;
+$fa-arrow-circle-down: \e0ab;
+$fa-arrow-circle-left: \e0a8;
+$fa-arrow-circle-o-down: \e01a;
+$fa-arrow-circle-o-left: \e190;
+$fa-arrow-circle-o-right: \e18e;
+$fa-arrow-circle-o-up: \e01b;
+$fa-arrow-circle-right: \e0a9;
+$fa-arrow-circle-up: \e0aa;
+$fa-arrow-down: \e063;
+$fa-arrow-left: \e060;
+$fa-arrow-right: \e061;
+$fa-arrow-up: \e062;
+$fa-arrows: \e047;
+$fa-arrows-alt: \e0b2;
+$fa-arrows-h: \e07e;
+$fa-arrows-v: \e07d;
+$fa-asterisk: \e069;
+$fa-at: \e1fa;
+$fa-automobile: \e1b9;
+$fa-backward: \e04a;
+$fa-ban: \e05e;
+$fa-bank: \e19c;
+$fa-bar-chart: \e080;
+$fa-bar-chart-o: \e080;
+$fa-barcode: \e02a;
+$fa-bars: \e0c9;
+$fa-beer: \e0fc;
+$fa-behance: \e1b4;
+$fa-behance-square: \e1b5;
+$fa-bell: \e0f3;
+$fa-bell-o: \e0a2;
+$fa-bell-slash: \e1f6;
+$fa-bell-slash-o: \e1f7;
+$fa-bicycle: \e206;
+$fa-binoculars: \e1e5;
+$fa-birthday-cake: \e1fd;
+$fa-bitbucket: \e171;
+$fa-bitbucket-square: \e172;
+$fa-bitcoin: \e15a;
+$fa-bold: \e032;
+$fa-bolt: \e0e7;
+$fa-bomb: \e1e2;
+$fa-book: \e02d;
+$fa-bookmark: \e02e;
+$fa-bookmark-o: \e097;
+$fa-briefcase: \e0b1;
+$fa-btc: \e15a;
+$fa-bug: \e188;
+$fa-building: \e1ad;
+$fa-building-o: \e0f7;
+$fa-bullhorn: \e0a1;
+$fa-bullseye: \e140;
+$fa-bus: \e207;
+$fa-cab: \e1ba;
+$fa-calculator: \e1ec;
+$fa-calendar: \e073;
+$fa-calendar-o: \e133;
+$fa-camera: \e030;
+$fa-camera-retro: \e083;
+$fa-car: \e1b9;
+$fa-caret-down: \e0d7;
+$fa-caret-left: \e0d9;
+$fa-caret-right: \e0da;
+$fa-caret-square-o-down: \e150;
+$fa-caret-square-o-left: \e191;
+$fa-caret-square-o-right: \e152;
+$fa-caret-square-o-up: \e151;
+$fa-caret-up: \e0d8;
+$fa-cc: \e20a;
+$fa-cc-amex: \e1f3;
+$fa-cc-discover: \e1f2;
+$fa-cc-mastercard: \e1f1;
+$fa-cc-paypal: \e1f4;
+$fa-cc-stripe: \e1f5;
+$fa-cc-visa: \e1f0;
+$fa-certificate: \e0a3;
+$fa-chain: \e0c1;
+$fa-chain-broken: \e127;
+$fa-check: \e00c;
+$fa-check-circle: \e058;
+$fa-check-circle-o: \e05d;
+$fa-check-square: \e14a;
+$fa-check-square-o: \e046;
+$fa-chevron-circle-down: \e13a;
+$fa-chevron-circle-left: \e137;
+$fa-chevron-circle-right: \e138;
+$fa-chevron-circle-up: \e139;
+$fa-chevron-down: \e078;
+$fa-chevron-left: \e053;
+$fa-chevron-right: \e054;
+$fa-chevron-up: \e077;
+$fa-child: \e1ae;
+$fa-circle: \e111;
+$fa-circle-o: \e10c;
+$fa-circle-o-notch: \e1ce;
+$fa-circle-thin: \e1db;
+$fa-clipboard: \e0ea;
+$fa-clock-o: \e017;
+$fa-close: \e00d;
+$fa-cloud: \e0c2;
+$fa-cloud-download: \e0ed;
+$fa-cloud-upload: \e0ee;
+$fa-cny: \e157;
+$fa-code: \e121;
+$fa-code-fork: \e126;
+$fa-codepen: \e1cb;
+$fa-coffee: \e0f4;
+$fa-cog: \e013;
+$fa-cogs: \e085;
+$fa-columns: \e0db;
+$fa-comment: \e075;
+$fa-comment-o: \e0e5;
+$fa-comments: \e086;
+$fa-comments-o: \e0e6;
+$fa-compass: \e14e;
+$fa-compress: \e066;
+$fa-copy: \e0c5;
+$fa-copyright: \e1f9;
+$fa-credit-card: \e09d;
+$fa-crop: \e125;
+$fa-crosshairs: \e05b;
+$fa-css3: \e13c;
+$fa-cube: \e1b2;
+$fa-cubes: \e1b3;
+$fa-cut: \e0c4;
+$fa-cutlery: \e0f5;
+$fa-dashboard: \e0e4;
+$fa-database: \e1c0;
+$fa-dedent: \e03b;
+$fa-delicious: \e1a5;
+$fa-desktop: \e108;
+$fa-deviantart: \e1bd;
+$fa-digg: \e1a6;
+$fa-dollar: \e155;
+$fa-dot-circle-o: \e192;
+$fa-download: \e019;
+$fa-dribbble: \e17d;
+$fa-dropbox: \e16b;
+$fa-drupal: \e1a9;
+$fa-edit: \e044;
+$fa-eject: \e052;
+$fa-ellipsis-h: \e141;
+$fa-ellipsis-v: \e142;
+$fa-empire: \e1d1;
+$fa-envelope: \e0e0;
+$fa-envelope-o: \e003;
+$fa-envelope-square: \e199;
+$fa-eraser: \e12d;
+$fa-eur: \e153;
+$fa-euro: \e153;
+$fa-exchange: \e0ec;
+$fa-exclamation: \e12a;
+$fa-exclamation-circle: \e06a;
+$fa-exclamation-triangle: \e071;
+$fa-expand: \e065;
+$fa-external-link: \e08e;
+$fa-external-link-square: \e14c;
+$fa-eye: \e06e;
+$fa-eye-slash: \e070;
+$fa-eyedropper: \e1fb;
+$fa-facebook: \e09a;
+$fa-facebook-square: \e082;
+$fa-fast-backward: \e049;
+$fa-fast-forward: \e050;
+$fa-fax: \e1ac;
+$fa-female: \e182;
+$fa-fighter-jet: \e0fb;
+$fa-file: \e15b;
+$fa-file-archive-o: \e1c6;
+$fa-file-audio-o: \e1c7;
+$fa-file-code-o: \e1c9;
+$fa-file-excel-o: \e1c3;
+$fa-file-image-o: \e1c5;
+$fa-file-movie-o: \e1c8;
+$fa-file-o: \e016;
+$fa-file-pdf-o: \e1c1;
+$fa-file-photo-o: \e1c5;
+$fa-file-picture-o: \e1c5;
+$fa-file-powerpoint-o: \e1c4;
+$fa-file-sound-o: \e1c7;
+$fa-file-text: \e15c;
+$fa-file-text-o: \e0f6;
+$fa-file-video-o: \e1c8;
+$fa-file-word-o: \e1c2;
+$fa-file-zip-o: \e1c6;
+$fa-files-o: \e0c5;
+$fa-film: \e008;
+$fa-filter: \e0b0;
+$fa-fire: \e06d;
+$fa-fire-extinguisher: \e134;
+$fa-flag: \e024;
+$fa-flag-checkered: \e11e;
+$fa-flag-o: \e11d;
+$fa-flash: \e0e7;
+$fa-flask: \e0c3;
+$fa-flickr: \e16e;
+$fa-floppy-o: \e0c7;
+$fa-folder: \e07b;
+$fa-folder-o: \e114;
+$fa-folder-open: \e07c;
+$fa-folder-open-o: \e115;
+$fa-font: \e031;
+$fa-forward: \e04e;
+$fa-foursquare: \e180;
+$fa-frown-o: \e119;
+$fa-futbol-o: \e1e3;
+$fa-gamepad: \e11b;
+$fa-gavel: \e0e3;
+$fa-gbp: \e154;
+$fa-ge: \e1d1;
+$fa-gear: \e013;
+$fa-gears: \e085;
+$fa-gift: \e06b;
+$fa-git: \e1d3;
+$fa-git-square: \e1d2;
+$fa-github: \e09b;
+$fa-github-alt: \e113;
+$fa-github-square: \e092;
+$fa-gittip: \e184;
+$fa-glass: \e000;
+$fa-globe: \e0ac;
+$fa-google: \e1a0;
+$fa-google-plus: \e0d5;
+$fa-google-plus-square: \e0d4;
+$fa-google-wallet: \e1ee;
+$fa-graduation-cap: \e19d;
+$fa-group: \e0c0;
+$fa-h-square: \e0fd;
+$fa-hacker-news: \e1d4;
+$fa-hand-o-down: \e0a7;
+$fa-hand-o-left: \e0a5;
+$fa-hand-o-right: \e0a4;
+$fa-hand-o-up: \e0a6;
+$fa-hdd-o: \e0a0;
+$fa-header: \e1dc;
+$fa-headphones: \e025;
+$fa-heart: \e004;
+$fa-heart-o: \e08a;
+$fa-history: \e1da;
+$fa-home: \e015;
+$fa-hospital-o: \e0f8;
+$fa-html5: \e13b;
+$fa-ils: \e20b;
+$fa-image: \e03e;
+$fa-inbox: \e01c;
+$fa-indent: \e03c;
+$fa-info: \e129;
+$fa-info-circle: \e05a;
+$fa-inr: \e156;
+$fa-instagram: \e16d;
+$fa-institution: \e19c;
+$fa-ioxhost: \e208;
+$fa-italic: \e033;
+$fa-joomla: \e1aa;
+$fa-jpy: \e157;
+$fa-jsfiddle: \e1cc;
+$fa-key: \e084;
+$fa-keyboard-o: \e11c;
+$fa-krw: \e159;
+$fa-language: \e1ab;
+$fa-laptop: \e109;
+$fa-lastfm: \e202;
+$fa-lastfm-square: \e203;
+$fa-leaf: \e06c;
+$fa-legal: \e0e3;
+$fa-lemon-o: \e094;
+$fa-level-down: \e149;
+$fa-level-up: \e148;
+$fa-life-bouy: \e1cd;
+$fa-life-buoy: \e1cd;
+$fa-life-ring: \e1cd;
+$fa-life-saver: \e1cd;
+$fa-lightbulb-o: \e0eb;
+$fa-line-chart: \e201;
+$fa-link: \e0c1;
+$fa-linkedin: \e0e1;
+$fa-linkedin-square: \e08c;
+$fa-linux: \e17c;
+$fa-list: \e03a;
+$fa-list-alt: \e022;
+$fa-list-ol: \e0cb;
+$fa-list-ul: \e0ca;
+$fa-location-arrow: \e124;
+$fa-lock: \e023;
+$fa-long-arrow-down: \e175;
+$fa-long-arrow-left: \e177;
+$fa-long-arrow-right: \e178;
+$fa-long-arrow-up: \e176;
+$fa-magic: \e0d0;
+$fa-magnet: \e076;
+$fa-mail-forward: \e064;
+$fa-mail-reply: \e112;
+$fa-mail-reply-all: \e122;
+$fa-male: \e183;
+$fa-map-marker: \e041;
+$fa-maxcdn: \e136;
+$fa-meanpath: \e20c;
+$fa-medkit: \e0fa;
+$fa-meh-o: \e11a;
+$fa-microphone: \e130;
+$fa-microphone-slash: \e131;
+$fa-minus: \e068;
+$fa-minus-circle: \e056;
+$fa-minus-square: \e146;
+$fa-minus-square-o: \e147;
+$fa-mobile: \e10b;
+$fa-mobile-phone: \e10b;
+$fa-money: \e0d6;
+$fa-moon-o: \e186;
+$fa-mortar-board: \e19d;
+$fa-music: \e001;
+$fa-navicon: \e0c9;
+$fa-newspaper-o: \e1ea;
+$fa-openid: \e19b;
+$fa-outdent: \e03b;
+$fa-pagelines: \e18c;
+$fa-paint-brush: \e1fc;
+$fa-paper-plane: \e1d8;
+$fa-paper-plane-o: \e1d9;
+$fa-paperclip: \e0c6;
+$fa-paragraph: \e1dd;
+$fa-paste: \e0ea;
+$fa-pause: \e04c;
+$fa-paw: \e1b0;
+$fa-paypal: \e1ed;
+$fa-pencil: \e040;
+$fa-pencil-square: \e14b;
+$fa-pencil-square-o: \e044;
+$fa-phone: \e095;
+$fa-phone-square: \e098;
+$fa-photo: \e03e;
+$fa-picture-o: \e03e;
+$fa-pie-chart: \e200;
+$fa-pied-piper: \e1a7;
+$fa-pied-piper-alt: \e1a8;
+$fa-pinterest: \e0d2;
+$fa-pinterest-square: \e0d3;
+$fa-plane: \e072;
+$fa-play: \e04b;
+$fa-play-circle: \e144;
+$fa-play-circle-o: \e01d;
+$fa-plug: \e1e6;
+$fa-plus: \e067;
+$fa-plus-circle: \e055;
+$fa-plus-square: \e0fe;
+$fa-plus-square-o: \e196;
+$fa-power-off: \e011;
+$fa-print: \e02f;
+$fa-puzzle-piece: \e12e;
+$fa-qq: \e1d6;
+$fa-qrcode: \e029;
+$fa-question: \e128;
+$fa-question-circle: \e059;
+$fa-quote-left: \e10d;
+$fa-quote-right: \e10e;
+$fa-ra: \e1d0;
+$fa-random: \e074;
+$fa-rebel: \e1d0;
+$fa-recycle: \e1b8;
+$fa-reddit: \e1a1;
+$fa-reddit-square: \e1a2;
+$fa-refresh: \e021;
+$fa-remove: \e00d;
+$fa-renren: \e18b;
+$fa-reorder: \e0c9;
+$fa-repeat: \e01e;
+$fa-reply: \e112;
+$fa-reply-all: \e122;
+$fa-retweet: \e079;
+$fa-rmb: \e157;
+$fa-road: \e018;
+$fa-rocket: \e135;
+$fa-rotate-left: \e0e2;
+$fa-rotate-right: \e01e;
+$fa-rouble: \e158;
+$fa-rss: \e09e;
+$fa-rss-square: \e143;
+$fa-rub: \e158;
+$fa-ruble: \e158;
+$fa-rupee: \e156;
+$fa-save: \e0c7;
+$fa-scissors: \e0c4;
+$fa-search: \e002;
+$fa-search-minus: \e010;
+$fa-search-plus: \e00e;
+$fa-send: \e1d8;
+$fa-send-o: \e1d9;
+$fa-share: \e064;
+$fa-share-alt: \e1e0;
+$fa-share-alt-square: \e1e1;
+$fa-share-square: \e14d;
+$fa-share-square-o: \e045;
+$fa-shekel: \e20b;
+$fa-sheqel: \e20b;
+$fa-shield: \e132;
+$fa-shopping-cart: \e07a;
+$fa-sign-in: \e090;
+$fa-sign-out: \e08b;
+$fa-signal: \e012;
+$fa-sitemap: \e0e8;
+$fa-skype: \e17e;
+$fa-slack: \e198;
+$fa-sliders: \e1de;
+$fa-slideshare: \e1e7;
+$fa-smile-o: \e118;
+$fa-soccer-ball-o: \e1e3;
+$fa-sort: \e0dc;
+$fa-sort-alpha-asc: \e15d;
+$fa-sort-alpha-desc: \e15e;
+$fa-sort-amount-asc: \e160;
+$fa-sort-amount-desc: \e161;
+$fa-sort-asc: \e0de;
+$fa-sort-desc: \e0dd;
+$fa-sort-down: \e0dd;
+$fa-sort-numeric-asc: \e162;
+$fa-sort-numeric-desc: \e163;
+$fa-sort-up: \e0de;
+$fa-soundcloud: \e1be;
+$fa-space-shuttle: \e197;
+$fa-spinner: \e110;
+$fa-spoon: \e1b1;
+$fa-spotify: \e1bc;
+$fa-square: \e0c8;
+$fa-square-o: \e096;
+$fa-stack-exchange: \e18d;
+$fa-stack-overflow: \e16c;
+$fa-star: \e005;
+$fa-star-half: \e089;
+$fa-star-half-empty: \e123;
+$fa-star-half-full: \e123;
+$fa-star-half-o: \e123;
+$fa-star-o: \e006;
+$fa-steam: \e1b6;
+$fa-steam-square: \e1b7;
+$fa-step-backward: \e048;
+$fa-step-forward: \e051;
+$fa-stethoscope: \e0f1;
+$fa-stop: \e04d;
+$fa-strikethrough: \e0cc;
+$fa-stumbleupon: \e1a4;
+$fa-stumbleupon-circle: \e1a3;
+$fa-subscript: \e12c;
+$fa-suitcase: \e0f2;
+$fa-sun-o: \e185;
+$fa-superscript: \e12b;
+$fa-support: \e1cd;
+$fa-table: \e0ce;
+$fa-tablet: \e10a;
+$fa-tachometer: \e0e4;
+$fa-tag: \e02b;
+$fa-tags: \e02c;
+$fa-tasks: \e0ae;
+$fa-taxi: \e1ba;
+$fa-tencent-weibo: \e1d5;
+$fa-terminal: \e120;
+$fa-text-height: \e034;
+$fa-text-width: \e035;
+$fa-th: \e00a;
+$fa-th-large: \e009;
+$fa-th-list: \e00b;
+$fa-thumb-tack: \e08d;
+$fa-thumbs-down: \e165;
+$fa-thumbs-o-down: \e088;
+$fa-thumbs-o-up: \e087;
+$fa-thumbs-up: \e164;
+$fa-ticket: \e145;
+$fa-times: \e00d;
+$fa-times-circle: \e057;
+$fa-times-circle-o: \e05c;
+$fa-tint: \e043;
+$fa-toggle-down: \e150;
+$fa-toggle-left: \e191;
+$fa-toggle-off: \e204;
+$fa-toggle-on: \e205;
+$fa-toggle-right: \e152;
+$fa-toggle-up: \e151;
+$fa-trash: \e1f8;
+$fa-trash-o: \e014;
+$fa-tree: \e1bb;
+$fa-trello: \e181;
+$fa-trophy: \e091;
+$fa-truck: \e0d1;
+$fa-try: \e195;
+$fa-tty: \e1e4;
+$fa-tumblr: \e173;
+$fa-tumblr-square: \e174;
+$fa-turkish-lira: \e195;
+$fa-twitch: \e1e8;
+$fa-twitter: \e099;
+$fa-twitter-square: \e081;
+$fa-umbrella: \e0e9;
+$fa-underline: \e0cd;
+$fa-undo: \e0e2;
+$fa-university: \e19c;
+$fa-unlink: \e127;
+$fa-unlock: \e09c;
+$fa-unlock-alt: \e13e;
+$fa-unsorted: \e0dc;
+$fa-upload: \e093;
+$fa-usd: \e155;
+$fa-user: \e007;
+$fa-user-md: \e0f0;
+$fa-users: \e0c0;
+$fa-video-camera: \e03d;
+$fa-vimeo-square: \e194;
+$fa-vine: \e1ca;
+$fa-vk: \e189;
+$fa-volume-down: \e027;
+$fa-volume-off: \e026;
+$fa-volume-up: \e028;
+$fa-warning: \e071;
+$fa-wechat: \e1d7;
+$fa-weibo: \e18a;
+$fa-weixin: \e1d7;
+$fa-wheelchair: \e193;
+$fa-wifi: \e1eb;
+$fa-windows: \e17a;
+$fa-won: \e159;
+$fa-wordpress: \e19a;
+$fa-wrench: \e0ad;
+$fa-xing: \e168;
+$fa-xing-square: \e169;
+$fa-yahoo: \e19e;
+$fa-yelp: \e1e9;
+$fa-yen: \e157;
+$fa-youtube: \e167;
+$fa-youtube-play: \e16a;
+$fa-youtube-square: \e166;
+
+//
+// Icon Class Styles
+// --------------------------------------------------
+
+[class*=fa-] {
+    &:before {
+        @extend %icon-base;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+

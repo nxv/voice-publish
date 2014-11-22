@@ -3,7 +3,7 @@ define ['jquery', 'ckeditor-jquery', 'angular-route', 'webfont', 'angularAMD', '
 
   WebFont.load({
     google: {
-      families: ['Open Sans']
+      families: ['Open Sans:300,400,700']
     }
   });
 

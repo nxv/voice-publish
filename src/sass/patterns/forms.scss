@@ -61,7 +61,7 @@ form {
 // Input Icons
 // --------------------------------------------------
 
-.input-icon[class*='icon-'] {
+.input-icon[class*='fa'] {
     position: relative;
     display: block;
 
@@ -307,6 +307,14 @@ textarea {
     max-width: 100%;
     padding: 0;
     border-width: 0;
+
+    @include icon-after($fa-chevron-down, 0.85em, $midbrown) {
+        position: absolute;
+        top: 50%;
+        right: 0.8em;
+        margin-top: -0.5em;
+        pointer-events: none;
+    };
 
     select {
         appearance: none;

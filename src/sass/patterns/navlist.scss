@@ -30,6 +30,12 @@
 // --------------------------------------------------
 
 .nav-list-item {
+    @include icon($fa-chevron-up, 1.4rem, $midbrown) {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
 
     position: relative;
     display: block;
