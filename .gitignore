@@ -9,6 +9,7 @@ pids
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
+.bowerrc
 
 # Dependency directory
 node_modules
@@ -19,6 +20,8 @@ build
 
 
 ###### GLOBAL ######
+
+.sublime-grunt.cache
 
 # -*- mode: gitignore; -*-
 *~

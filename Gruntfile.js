@@ -16,7 +16,12 @@ var ENV = {
   PRODUCTION  : 'production',
 };
 
+fs.writeFileSync('.bowerrc',
+  JSON.stringify({directory: path.relative(cwd,bowerDirectory)}));
+
 configureGrunt = function (grunt) {
+  var bowerModules = {};
+
   require('matchdep').filterDev(['grunt-*', '!grunt-cli']).forEach(grunt.loadNpmTasks);
 
   var generateJadeData = function(env) {
@@ -128,7 +133,18 @@ configureGrunt = function (grunt) {
 
     bower: {
       install: {
-        options: {targetDir: '<%= paths.build %>/lib'}
+        options: {
+          cleanup: true,
+          targetDir: '<%= paths.build %>/lib',
+          // Maintain the original package structure since static resource reference may fail with managed layout
+          layout: function(type, pkg, source) {
+            bowerModules[pkg] == null && (bowerModules[pkg] = []);
+            var srcpath = path.resolve(cwd, source),
+                destpath = path.relative(bowerDirectory, srcpath);
+            bowerModules[pkg].push(destpath);
+            return path.dirname(destpath);
+          }
+        }
       }
     }
 
@@ -147,7 +163,7 @@ configureGrunt = function (grunt) {
 
   grunt.initConfig(cfg);
 
-  grunt.registerTask('build', ['clean:build', 'bower', 'copy:build', 'livescript', 'jade:build', 'sass:build', 'clean:bower']);
+  grunt.registerTask('build', ['clean:build', 'bower', 'copy:build', 'livescript', 'jade:build', 'sass:build']);
   grunt.registerTask('release', ['clean', 'build', 'copy:release']);
   grunt.registerTask('default', ['build']);
 };
