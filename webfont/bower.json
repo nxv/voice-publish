@@ -1,0 +1,7 @@
+{
+  "name": "webfont",
+  "version": "1.5.8",
+  "main": [
+    "webfont.js"
+  ]
+}
