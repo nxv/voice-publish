@@ -1,5 +1,11 @@
-define ['jquery', 'ckeditor-jquery', 'angular-route', 'angularAMD', 'app/parse'],
-( _jquery_, _ckeditor_, _angularRoute_, angularAMD, parse ) ->
+define ['jquery', 'ckeditor-jquery', 'angular-route', 'webfont', 'angularAMD', 'app/parse'],
+( _jquery_, _ckeditor_, _angularRoute_, _webfont_, angularAMD, parse ) ->
+
+  WebFont.load({
+    google: {
+      families: ['Open Sans']
+    }
+  });
 
   app = angular.module('webapp', ['ngRoute'])
 

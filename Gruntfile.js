@@ -43,7 +43,6 @@ configureGrunt = function (grunt) {
   }
 
   var generatePathsInjection = function() {
-    console.log(bowerModules);
     var exceptions = ['requirejs/**', 'fontawesome/**'];
     var lines = [];
     _.forEach(bowerModules, function(module, pkg) {
@@ -51,7 +50,6 @@ configureGrunt = function (grunt) {
         return ! grunt.file.isMatch(exceptions, srcpath) && 
                  grunt.file.isMatch('**/' + pkg + '.js', srcpath);
       });
-      console.log(target);
       if (target) {
         target = path.join(path.dirname(target), path.basename(target, '.js'));
         target = target.split(path.sep).join('/');
